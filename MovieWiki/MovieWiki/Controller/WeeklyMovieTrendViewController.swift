@@ -10,7 +10,7 @@ import Combine
 
 final class WeeklyMovieTrendViewController: UIViewController {
 
-    private let model = WeeklyTrendingMovieModel()
+    private let model = WeeklyTrendMovieModel()
     private let rootView = WeeklyMovieTrendRootView()
     
     private var cancellables = Set<AnyCancellable>()

@@ -30,7 +30,7 @@ final class WeeklyMovieTrendRootView: UIView {
 }
 
 extension WeeklyMovieTrendRootView {
-    func update(movieData: WeeklyTrendingMovieEntity) {
+    func update(movieData: MovieEntity<WeeklyTrendMovie>) {
         self.weeklyMovieTrendTableView.movieList = movieData.results
     }
 }

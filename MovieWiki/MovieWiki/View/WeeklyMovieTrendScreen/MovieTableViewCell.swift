@@ -11,7 +11,7 @@ import Then
 
 final class MovieTableViewCell: UITableViewCell {
     
-    var movie: Movie? {
+    var movie: WeeklyTrendMovie? {
         didSet {
             self.configureHierarchy()
             self.configureLayout()

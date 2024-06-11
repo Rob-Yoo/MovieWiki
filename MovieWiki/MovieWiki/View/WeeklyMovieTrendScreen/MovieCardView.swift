@@ -36,7 +36,7 @@ final class MovieCardView: UIView {
         $0.font = .systemFont(ofSize: 10)
     }
     
-    init(movie: Movie) {
+    init(movie: WeeklyTrendMovie) {
         super.init(frame: .zero)
 
         let backdropPath: String = movie.backdropPath
@@ -44,11 +44,9 @@ final class MovieCardView: UIView {
         let title: String = movie.title
         
         NetworkManager.requestURL(url: API.creditURL(movieID: String(movie.id))) { [weak self] (credit: CreditEntity) in
-            DispatchQueue.main.async {
                 self?.castingLabel.text = credit.cast.reduce("") {
                     $0.isEmpty ? $0 + $1.name : $0 + ", " + $1.name
                 }
-            }
         }
         
         let url = URL(string: API.imageURL(imagePath: backdropPath))

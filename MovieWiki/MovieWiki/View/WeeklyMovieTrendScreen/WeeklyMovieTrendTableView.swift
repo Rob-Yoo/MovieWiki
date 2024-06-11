@@ -11,7 +11,7 @@ import Then
 
 final class WeeklyMovieTrendTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    var movieList: [Movie] = [] {
+    var movieList: [WeeklyTrendMovie] = [] {
         didSet {
             self.reloadData()
         }
@@ -38,7 +38,7 @@ final class WeeklyMovieTrendTableView: UITableView, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = self.movieList[indexPath.row]
-        print(movie)
+
         guard let movieCell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.reusableIdentifier, for: indexPath) as? MovieTableViewCell else {
             return UITableViewCell()
         }

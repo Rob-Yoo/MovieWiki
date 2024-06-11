@@ -1,17 +1,13 @@
 //
-//  MovieEntity.swift
+//  WeeklyTrendMovie.swift
 //  MovieWiki
 //
-//  Created by Jinyoung Yoo on 6/10/24.
+//  Created by Jinyoung Yoo on 6/11/24.
 //
 
 import Foundation
 
-struct WeeklyTrendingMovieEntity: Codable {
-    let results: [Movie]
-}
-
-struct Movie: Codable {
+struct WeeklyTrendMovie: Codable {
     let backdropPath: String
     let id: Int
     let overview: String

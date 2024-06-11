@@ -18,7 +18,6 @@ final class GenreManger {
     }
     
     func convertIdIntoName(genreIDs: [Int]) -> [String] {
-//        print(genres)
         return genreIDs.map { id in
             genres.first { $0.id == id }?.name ?? ""
         }
