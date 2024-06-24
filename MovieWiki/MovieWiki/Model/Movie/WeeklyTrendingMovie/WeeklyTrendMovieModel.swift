@@ -9,10 +9,10 @@ import Foundation
 import Combine
 
 final class WeeklyTrendMovieModel: MovieModelProtocol {
-    @Published var movieList: MovieEntity<WeeklyTrendMovie>
+    @Published var movieList: MovieDTO<WeeklyTrendMovie>
     
     init() {
-        self.movieList = MovieEntity(results: [], totalPages: 1)
+        self.movieList = MovieDTO(results: [], totalPages: 1)
         self.fetchMovieData(url: API.weeklyTrendMovieURL)
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieEntity<T: Codable>: Codable {
+struct MovieDTO<T: Codable>: Codable {
     var results: [T]
     let totalPages: Int
     

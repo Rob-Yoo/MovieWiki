@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class SearchMovieModel: MovieModelProtocol {
-    @Published var movieList: MovieEntity<SearchMovie> = MovieEntity(results: [], totalPages: 1)
+    @Published var movieList: MovieDTO<MoviePosterEntity> = MovieDTO(results: [], totalPages: 1)
     var searchingMovie = "" {
         willSet {
             let url = API.searchMovieURL(movie: newValue, page: 1)

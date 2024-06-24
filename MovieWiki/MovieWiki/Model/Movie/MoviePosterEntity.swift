@@ -7,10 +7,14 @@
 
 import Foundation
 
-struct SearchMovie: Codable {
+struct MoviePosterEntity: Codable {
     let posterImage: String
+    let id: Int
+    let title: String
     
     enum CodingKeys: String, CodingKey {
         case posterImage = "poster_path"
+        case id
+        case title = "original_title"
     }
 }

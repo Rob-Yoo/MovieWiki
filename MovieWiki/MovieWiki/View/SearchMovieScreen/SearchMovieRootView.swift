@@ -80,7 +80,7 @@ extension SearchMovieRootView: UISearchBarDelegate {
 
 //MARK: - Update Subviews
 extension SearchMovieRootView {
-    func update(movieList: [SearchMovie]) {
+    func update(movieList: [MoviePosterEntity]) {
         self.searchResultCollectionView.movieList = movieList
     }
 }

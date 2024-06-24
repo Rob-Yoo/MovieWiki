@@ -11,11 +11,12 @@ import Then
 
 protocol SearchResultCollectionViewDelegate: AnyObject {
     func scrollDown()
+    func selectMovie(id: Int, title: String)
 }
 
 final class SearchResultCollectionView: UICollectionView {
     
-     var movieList = [SearchMovie]() {
+     var movieList = [MoviePosterEntity]() {
         didSet {
             self.reloadData()
 
@@ -54,6 +55,14 @@ extension SearchResultCollectionView: UICollectionViewDelegate, UICollectionView
         
         cell.configureCellData(imagePath: movie.posterImage)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = self.movieList[indexPath.row]
+        
+        guard let delegate = self.searchResultCollectionViewDelegate else { return }
+        
+        delegate.selectMovie(id: movie.id, title: movie.title)
     }
 }
 

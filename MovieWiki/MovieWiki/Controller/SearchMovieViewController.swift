@@ -40,6 +40,11 @@ extension SearchMovieViewController: SearchMovieRootViewDelegate, SearchResultCo
         self.model.page += 1
     }
     
+    func selectMovie(id: Int, title: String) {
+        let nextVC = SimilarRecommendationMovieViewController(movieID: id, title: title)
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
 
 //MARK: - Observing Model
