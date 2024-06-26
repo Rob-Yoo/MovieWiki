@@ -13,20 +13,17 @@ final class SRModel {
     
     var searchQuery = 0 {
         willSet {
-            let similarMovieURL = API.similarMovieURL(movieID: newValue, page: 1)
-            let recommendMovieURL = API.recommendationMovieURL(movieID: newValue, page: 1)
-            
-            self.fetchMoviePosterList(similarURL: similarMovieURL, recommendURL: recommendMovieURL)
+            self.fetchMoviePosterList(movieID: newValue)
         }
     }
     
-    private func fetchMoviePosterList(similarURL: String, recommendURL: String) {
+    private func fetchMoviePosterList(movieID: Int) {
         var posterImageList = [[MoviePosterEntity]]()
         let group = DispatchGroup()
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.requestURL(url: similarURL) { (movieList: MovieDTO<MoviePosterEntity>) in
+            NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { (movieList: MovieDTO<MoviePosterEntity>) in
                 posterImageList.append(movieList.results)
                 group.leave()
             }
@@ -34,7 +31,7 @@ final class SRModel {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.requestURL(url: recommendURL) { (movieList: MovieDTO<MoviePosterEntity>) in
+            NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { (movieList: MovieDTO<MoviePosterEntity>) in
                 posterImageList.append(movieList.results)
                 group.leave()
             }

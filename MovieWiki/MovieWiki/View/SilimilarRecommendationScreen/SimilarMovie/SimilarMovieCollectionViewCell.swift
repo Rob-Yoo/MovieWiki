@@ -35,7 +35,7 @@ final class SimilarMovieCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellData(imageURL: String) {
-        let url = URL(string: API.imageURL(imagePath: imageURL))
+        let url = URL(string: TMDBRequest.image(imagePath: imageURL).endPoint)
         
         self.posterImageView.kf.setImage(with: url)
     }

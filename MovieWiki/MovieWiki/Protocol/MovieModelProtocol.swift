@@ -14,8 +14,8 @@ protocol MovieModelProtocol: AnyObject {
 }
 
 extension MovieModelProtocol {
-    func fetchMovieData(url: String, isAppend: Bool = false) {
-        NetworkManager.requestURL(url: url) { [weak self] (movieList: MovieDTO<T>) in
+    func fetchMovieData(req: TMDBRequest, isAppend: Bool = false) {
+        NetworkManager.requestURL(req: req) { [weak self] (movieList: MovieDTO<T>) in
             if (isAppend) {
                 self?.movieList.results.append(contentsOf: movieList.results)
             } else {

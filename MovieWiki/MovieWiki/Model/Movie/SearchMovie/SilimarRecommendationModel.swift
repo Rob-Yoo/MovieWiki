@@ -15,27 +15,8 @@ final class SilimarRecommendationModel {
     
     var searchQuery = 0 {
         willSet {
-            let similarMovieURL = API.similarMovieURL(movieID: newValue, page: 1)
-            let recommendMovieURL = API.recommendationMovieURL(movieID: newValue, page: 1)
-
-            self.fetchSimliarMovieList(url: similarMovieURL)
-            self.fetchRecommendMovieList(url: recommendMovieURL)
-        }
-    }
-    
-    var similarMoviePage = 1 {
-        willSet {
-            let similarMovieURL = API.similarMovieURL(movieID: self.searchQuery, page: newValue)
-            
-            self.fetchSimliarMovieList(url: similarMovieURL, isAppend: true)
-        }
-    }
-    
-    var recommendMoviePage = 1 {
-        willSet {
-            let recommendMovieURL = API.recommendationMovieURL(movieID: self.searchQuery, page: newValue)
-            
-            self.fetchRecommendMovieList(url: recommendMovieURL, isAppend: true)
+            self.fetchSimliarMovieList(movieID: newValue)
+            self.fetchRecommendMovieList(movieID: newValue)
         }
     }
 }
@@ -43,23 +24,15 @@ final class SilimarRecommendationModel {
 
 //MARK: - Model Manipulation
 extension SilimarRecommendationModel {
-    private func fetchSimliarMovieList(url: String, isAppend: Bool = false) {
-        NetworkManager.requestURL(url: url) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
-            if (isAppend) {
-                self?.similarMovieList.results.append(contentsOf: movieList.results)
-            } else {
+    private func fetchSimliarMovieList(movieID: Int, isAppend: Bool = false) {
+        NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
                 self?.similarMovieList = movieList
-            }
         }
     }
     
-    private func fetchRecommendMovieList(url: String, isAppend: Bool = false) {
-        NetworkManager.requestURL(url: url) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
-            if (isAppend) {
-                self?.recommendMovieList.results.append(contentsOf: movieList.results)
-            } else {
+    private func fetchRecommendMovieList(movieID: Int, isAppend: Bool = false) {
+        NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
                 self?.recommendMovieList = movieList
-            }
         }
     }
 }

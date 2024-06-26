@@ -52,6 +52,7 @@
 		CCE938742C175C8F00891749 /* GenreHashTagLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE938732C175C8F00891749 /* GenreHashTagLabelStackView.swift */; };
 		CCE938762C175FBA00891749 /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE938752C175FBA00891749 /* MovieCardView.swift */; };
 		CCE9387B2C17619000891749 /* CreditEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE9387A2C17619000891749 /* CreditEntity.swift */; };
+		CCF4EC902C2BAD1F00D6E1D1 /* TMDBRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF4EC8F2C2BAD1F00D6E1D1 /* TMDBRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		CCE938732C175C8F00891749 /* GenreHashTagLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreHashTagLabelStackView.swift; sourceTree = "<group>"; };
 		CCE938752C175FBA00891749 /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
 		CCE9387A2C17619000891749 /* CreditEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditEntity.swift; sourceTree = "<group>"; };
+		CCF4EC8F2C2BAD1F00D6E1D1 /* TMDBRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				CC134C3F2C173D78004349B6 /* NetworkManager.swift */,
 				CC134C432C174893004349B6 /* GenreManger.swift */,
+				CCF4EC8F2C2BAD1F00D6E1D1 /* TMDBRequest.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				CCE9386F2C175AD100891749 /* ReusableProtocol.swift in Sources */,
 				CC134C442C174893004349B6 /* GenreManger.swift in Sources */,
 				CCCE232C2C2ABF260069340B /* SRTableViewCell.swift in Sources */,
+				CCF4EC902C2BAD1F00D6E1D1 /* TMDBRequest.swift in Sources */,
 				CC7201B32C172A8600F17916 /* WeeklyMovieTrendViewController.swift in Sources */,
 				CC14042F2C18521C00052B4E /* SearchResultCollectionView.swift in Sources */,
 				CCC92A182C29551F00268016 /* SilimarRecommendationModel.swift in Sources */,

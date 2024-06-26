@@ -43,13 +43,13 @@ final class MovieCardView: UIView {
         let rating: Float = movie.rating
         let title: String = movie.title
         
-        NetworkManager.requestURL(url: API.creditURL(movieID: String(movie.id))) { [weak self] (credit: CreditEntity) in
+        NetworkManager.requestURL(req: .credit(movieID: movie.id)) { [weak self] (credit: CreditEntity) in
                 self?.castingLabel.text = credit.cast.reduce("") {
                     $0.isEmpty ? $0 + $1.name : $0 + ", " + $1.name
                 }
         }
         
-        let url = URL(string: API.imageURL(imagePath: backdropPath))
+        let url = URL(string: TMDBRequest.image(imagePath: backdropPath).endPoint)
 
         self.backdropImageView.kf.setImage(with: url)
         self.titleLabel.text = title

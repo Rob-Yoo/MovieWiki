@@ -32,7 +32,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCellData(imagePath: String) {
-        let urlString = API.imageURL(imagePath: imagePath)
+        let urlString = TMDBRequest.image(imagePath: imagePath).endPoint
         let url = URL(string: urlString)
         
         self.posterImageView.kf.setImage(with: url)

@@ -9,8 +9,12 @@ import Foundation
 import Alamofire
 
 struct NetworkManager {
-    static func requestURL<T: Codable>(url: String, success: @escaping (_ value: T) -> Void, failure: @escaping (_ error: Error) -> Void = { error in print(error) }) {
-        AF.request(url)
+    static func requestURL<T: Codable>(req: TMDBRequest, success: @escaping (_ value: T) -> Void, failure: @escaping (_ error: Error) -> Void = { error in print(error) }) {
+        AF.request(req.endPoint,
+                   method: req.method,
+                   parameters: req.parameter,
+                   encoding: URLEncoding(destination: .queryString),
+                   headers: req.header)
             .responseDecodable(of: T.self) { res in
                 switch res.result {
                 case .success(let value):

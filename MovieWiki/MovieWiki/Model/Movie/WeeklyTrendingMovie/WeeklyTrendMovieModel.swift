@@ -13,6 +13,6 @@ final class WeeklyTrendMovieModel: MovieModelProtocol {
     
     init() {
         self.movieList = MovieDTO(results: [], totalPages: 1)
-        self.fetchMovieData(url: API.weeklyTrendMovieURL)
+        self.fetchMovieData(req: .trendingMovie)
     }
 }

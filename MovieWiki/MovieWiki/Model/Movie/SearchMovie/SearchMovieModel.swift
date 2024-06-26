@@ -12,16 +12,14 @@ class SearchMovieModel: MovieModelProtocol {
     @Published var movieList: MovieDTO<MoviePosterEntity> = MovieDTO(results: [], totalPages: 1)
     var searchingMovie = "" {
         willSet {
-            let url = API.searchMovieURL(movie: newValue, page: 1)
-            self.fetchMovieData(url: url)
+            self.fetchMovieData(req: .searchMovie(query: newValue, page: 1))
         }
     }
 
     var page = 1 {
         willSet {
             if page <= self.movieList.totalPages {
-                let url = API.searchMovieURL(movie: self.searchingMovie, page: newValue)
-                self.fetchMovieData(url: url, isAppend: true)
+                self.fetchMovieData(req: .searchMovie(query: searchingMovie, page: newValue), isAppend: true)
             }
         }
     }

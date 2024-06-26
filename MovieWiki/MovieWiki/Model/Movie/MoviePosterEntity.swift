@@ -15,6 +15,6 @@ struct MoviePosterEntity: Codable {
     enum CodingKeys: String, CodingKey {
         case posterImage = "poster_path"
         case id
-        case title = "original_title"
+        case title
     }
 }

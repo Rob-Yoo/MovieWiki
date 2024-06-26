@@ -12,7 +12,7 @@ final class GenreManger {
     private var genres: [Genre] = []
     
     private init() {
-        NetworkManager.requestURL(url: API.genreURL) { (entity: GenreEntity) in
+        NetworkManager.requestURL(req: .genre) { (entity: GenreEntity) in
             self.genres = entity.genres
         }
     }
