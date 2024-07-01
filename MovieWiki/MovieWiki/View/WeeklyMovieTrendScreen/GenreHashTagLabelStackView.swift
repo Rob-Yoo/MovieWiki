@@ -17,7 +17,8 @@ final class GenreHashTagLabelStackView: UIStackView {
         return UILabel().then {
             $0.text = "#" + genre
             $0.textColor = .black
-            $0.font = .boldSystemFont(ofSize: 17)
+            $0.textAlignment = .center
+            $0.font = .boldSystemFont(ofSize: 15)
         }
     }
     
@@ -34,8 +35,8 @@ final class GenreHashTagLabelStackView: UIStackView {
     private func configureStackView() {
         self.axis = .horizontal
         self.alignment = .fill
-        self.distribution = .fillEqually
-        self.spacing = 5
+        self.distribution = .fillProportionally
+        self.spacing = 10
         self.genreHashTagLabels.forEach { self.addArrangedSubview($0) }
     }
 }

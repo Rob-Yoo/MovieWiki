@@ -20,10 +20,11 @@ final class MovieTableViewCell: UITableViewCell {
     
     private let dateLabel = UILabel().then {
         $0.textColor = .lightGray
-        $0.font = .systemFont(ofSize: 13)
+        $0.font = .systemFont(ofSize: 14)
     }
     
     private lazy var genreHashTagLabelStackView = GenreHashTagLabelStackView(genres: GenreManger.shared.convertIdIntoName(genreIDs: self.movie?.genres ?? []))
+    
     private lazy var movieCardView = MovieCardView(movie: self.movie!)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,7 +45,7 @@ final class MovieTableViewCell: UITableViewCell {
     
     private func configureLayout() {
         dateLabel.snp.makeConstraints { make in
-            dateLabel.text = self.movie?.releaseDate.formatDate(inputDateFormat: "yyyy-MM-dd", outputDateFormat: "dd/MM/yyyy")
+            dateLabel.text = self.movie?.releaseDate.formatDate(inputDateFormat: "yyyy-MM-dd", outputDateFormat: "yyyy/MM/dd")
             make.top.equalToSuperview().offset(10)
             make.horizontalEdges.equalToSuperview().inset(20)
         }
@@ -52,7 +53,7 @@ final class MovieTableViewCell: UITableViewCell {
         genreHashTagLabelStackView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom)
             make.leading.equalTo(dateLabel.snp.leading)
-            make.trailing.greaterThanOrEqualToSuperview().inset(100)
+            make.trailing.lessThanOrEqualTo(contentView.safeAreaLayoutGuide).offset(-20)
             make.height.equalTo(30)
         }
         

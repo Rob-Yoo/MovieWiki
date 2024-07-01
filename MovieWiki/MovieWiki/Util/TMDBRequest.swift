@@ -26,7 +26,7 @@ enum TMDBRequest {
         case .trendingMovie:
             return self.baseURL + "/trending/movie/week"
         case .genre:
-            return self.baseURL + "/genre/movie/list?language=ko"
+            return self.baseURL + "/genre/movie/list"
         case .image(let imagePath):
             return "https://image.tmdb.org/t/p/w300" + imagePath
         case .credit(let movieID):
@@ -54,6 +54,8 @@ enum TMDBRequest {
             return ["language": "ko-KR", "page": 1]
         case .recommendMovie(_):
             return ["language": "ko-KR", "page": 1]
+        case .genre:
+            return ["language": "ko"]
         default:
             return ["language": "ko-KR"]
         }

@@ -40,7 +40,6 @@ extension SRMovieViewController {
             .dropFirst()
             .receive(on: RunLoop.main)
             .sink { [weak self] new in
-//                print(new)
                 self?.rootView.moviePosterList = new
             }
             .store(in: &cancellable)
