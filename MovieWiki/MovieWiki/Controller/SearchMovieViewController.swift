@@ -41,7 +41,7 @@ extension SearchMovieViewController: SearchMovieRootViewDelegate, SearchResultCo
     }
     
     func selectMovie(id: Int, title: String) {
-        let nextVC = SRMovieViewController(movieID: id, title: title)
+        let nextVC = MovieDetailViewController(movieID: id, title: title)
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

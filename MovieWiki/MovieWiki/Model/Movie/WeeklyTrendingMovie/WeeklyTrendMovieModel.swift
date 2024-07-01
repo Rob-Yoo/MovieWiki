@@ -9,10 +9,10 @@ import Foundation
 import Combine
 
 final class WeeklyTrendMovieModel: MovieModelProtocol {
-    @Published var movieList: MovieDTO<WeeklyTrendMovie>
+    @Published var movieList: MovieResult<WeeklyTrendMovie>
     
     init() {
-        self.movieList = MovieDTO(results: [], totalPages: 1)
+        self.movieList = MovieResult(results: [], totalPages: 1)
         self.fetchMovieData(req: .trendingMovie)
     }
 }

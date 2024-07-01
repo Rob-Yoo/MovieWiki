@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 final class SilimarRecommendationModel {
-    @Published var similarMovieList = MovieDTO<MoviePosterEntity>(results: [], totalPages: 0)
+    @Published var similarMovieList = MovieResult<MoviePosterEntity>(results: [], totalPages: 0)
     
-    @Published var recommendMovieList = MovieDTO<MoviePosterEntity>(results: [], totalPages: 0)
+    @Published var recommendMovieList = MovieResult<MoviePosterEntity>(results: [], totalPages: 0)
     
     var searchQuery = 0 {
         willSet {
@@ -25,13 +25,13 @@ final class SilimarRecommendationModel {
 //MARK: - Model Manipulation
 extension SilimarRecommendationModel {
     private func fetchSimliarMovieList(movieID: Int, isAppend: Bool = false) {
-        NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
+        NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { [weak self] (movieList: MovieResult<MoviePosterEntity>) in
                 self?.similarMovieList = movieList
         }
     }
     
     private func fetchRecommendMovieList(movieID: Int, isAppend: Bool = false) {
-        NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { [weak self] (movieList: MovieDTO<MoviePosterEntity>) in
+        NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { [weak self] (movieList: MovieResult<MoviePosterEntity>) in
                 self?.recommendMovieList = movieList
         }
     }

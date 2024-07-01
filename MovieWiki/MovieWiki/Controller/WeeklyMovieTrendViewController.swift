@@ -32,16 +32,6 @@ final class WeeklyMovieTrendViewController: UIViewController {
         style.shadowColor = UIColor.lightGray
         self.navigationController?.navigationBar.standardAppearance = style
         self.navigationController?.navigationBar.tintColor = .black
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
-    }
-}
-
-//MARK: - User Action Handling
-extension WeeklyMovieTrendViewController {
-    @objc func searchButtonTapped() {
-        let nextVC = SearchMovieViewController()
-        
-        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

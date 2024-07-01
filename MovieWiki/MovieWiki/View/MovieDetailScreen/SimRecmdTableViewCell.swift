@@ -9,23 +9,15 @@ import UIKit
 import SnapKit
 import Then
 
-final class SRTableViewCell: UITableViewCell {
+final class SimRecmdTableViewCell: UITableViewCell {
 
     private let titleLabel = UILabel().then {
         $0.textColor = .black
         $0.font = .boldSystemFont(ofSize: 20)
     }
     
-    private let moviePosterCollectionView = MoviePosterCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-        let width = (UIScreen.main.bounds.width - 40) / 3.5
-        let height = width * 1.4
-        
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 10
-        layout.itemSize = CGSize(width: width, height: height)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        return layout
+    lazy var moviePosterCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout()).then {
+        $0.register(MoviePosterCollectionViewCell.self, forCellWithReuseIdentifier: MoviePosterCollectionViewCell.reusableIdentifier)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -36,6 +28,18 @@ final class SRTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func layout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        let width = (UIScreen.main.bounds.width - 40) / 3.5
+        let height = width * 1.4
+        
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: width, height: height)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return layout
     }
     
     private func configureHierarchy() {
@@ -56,8 +60,7 @@ final class SRTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCellData(title: String, posterImageList: [MoviePosterEntity]) {
+    func configureCellData(title: String) {
         self.titleLabel.text = title
-        self.moviePosterCollectionView.posterImageList = posterImageList
     }
 }

@@ -8,12 +8,21 @@
 import Foundation
 import Combine
 
-final class SRModel {
+final class MovieDetailModel {
+    @Published var trailerList = [Trailer]()
     @Published var moviePosterList = [[MoviePosterEntity]]()
     
     var searchQuery = 0 {
         willSet {
+            self.fetchMovieTrailerList(movieID: newValue)
             self.fetchMoviePosterList(movieID: newValue)
+        }
+    }
+    
+    private func fetchMovieTrailerList(movieID: Int) {
+        NetworkManager.requestURL(req: .trailer(movieID: movieID)) { [weak self]
+            (response: VideoResult) in
+            self?.trailerList = response.results
         }
     }
     
@@ -23,7 +32,7 @@ final class SRModel {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { (movieList: MovieDTO<MoviePosterEntity>) in
+            NetworkManager.requestURL(req: .similarMovie(movieID: movieID)) { (movieList: MovieResult<MoviePosterEntity>) in
                 posterImageList.append(movieList.results)
                 group.leave()
             }
@@ -31,7 +40,7 @@ final class SRModel {
         
         group.enter()
         DispatchQueue.global().async(group: group) {
-            NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { (movieList: MovieDTO<MoviePosterEntity>) in
+            NetworkManager.requestURL(req: .recommendMovie(moiveID: movieID)) { (movieList: MovieResult<MoviePosterEntity>) in
                 posterImageList.append(movieList.results)
                 group.leave()
             }

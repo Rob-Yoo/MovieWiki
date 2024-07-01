@@ -16,6 +16,7 @@ enum TMDBRequest {
     case searchMovie(query: String, page: Int)
     case similarMovie(movieID: Int)
     case recommendMovie(moiveID: Int)
+    case trailer(movieID: Int)
     
     private var baseURL: String {
         return "https://api.themoviedb.org/3"
@@ -37,6 +38,8 @@ enum TMDBRequest {
             return self.baseURL + "/movie/\(movieID)/similar"
         case .recommendMovie(let movieID):
             return self.baseURL + "/movie/\(movieID)/recommendations"
+        case .trailer(let movieID):
+            return self.baseURL + "/movie/\(movieID)/videos"
         }
     }
     
@@ -56,6 +59,8 @@ enum TMDBRequest {
             return ["language": "ko-KR", "page": 1]
         case .genre:
             return ["language": "ko"]
+        case .trailer(_):
+            return ["language": "en-US"]
         default:
             return ["language": "ko-KR"]
         }
