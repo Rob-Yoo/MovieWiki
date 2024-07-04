@@ -29,7 +29,7 @@ enum TMDBRequest {
         case .genre:
             return self.baseURL + "/genre/movie/list"
         case .image(let imagePath):
-            return "https://image.tmdb.org/t/p/w300" + imagePath
+            return "https://image.tmdb.org/t/p/w780" + imagePath
         case .credit(let movieID):
             return self.baseURL + "/movie/\(movieID)/credits"
         case .searchMovie(_, _):
